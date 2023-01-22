@@ -1,15 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, createContext } from "react";
+import Vehicle from "./components/Vehicle";
+
+interface IFactors {
+  ebike: number,
+  e85: number,
+  diesel: number,
+  petrol: number,
+  gpl: number,
+  motorcycle: number,
+  escooter: number,
+  ecar: number,
+  hybridcar: number
+}
+
+export const AppContext = createContext({} as IFactors);
 
 function App() {
-  const [ebikeFactor, setEbikeFactor] = useState("");
-  const [carE85Factor, setCarE85Factor] = useState("");
-  const [carDieselFactor, setCarDieselFactor] = useState("");
-  const [carPetrolFactor, setCarPetrolFactor] = useState("");
-  const [carGPLFactor, setCarGPLFactor] = useState("");
-  const [motorcycleFactor, setMotorcycleFactor] = useState("");
-  const [escooterFactor, setEscooterFactor] = useState("");
-  const [carBatteryFactor, setCarBatteryFactor] = useState("");
-  const [carHybridFactor, setCarHybridFactor] = useState("");
+  const [emissionFactors, setEmissionFactors] = useState<IFactors>({
+    ebike: 0,
+    e85: 0,
+    diesel: 0,
+    petrol: 0,
+    gpl: 0,
+    motorcycle: 0,
+    escooter: 0,
+    ecar: 0,
+    hybridcar: 0
+  });
 
   useEffect(() => {
     Promise.all([
@@ -69,34 +86,42 @@ function App() {
       })
     ])
       .then(responses => {
-        return Promise.all(responses.map(res => {return res.json()}))
+        return Promise.all(responses.map(res => { return res.json() }))
       })
       .then(data => {
-        setEbikeFactor(data[0].results[0].factor);
-        setCarE85Factor(data[1].results[0].factor);
-        setCarDieselFactor(data[2].results[0].factor);
-        setCarPetrolFactor(data[3].results[0].factor);
-        setCarGPLFactor(data[4].results[0].factor);
-        setMotorcycleFactor(data[5].results[0].factor);
-        setEscooterFactor(data[6].results[0].factor);
-        setCarBatteryFactor(data[7].results[0].factor);
-        setCarHybridFactor(data[8].results[0].factor);
+        setEmissionFactors(prevState => {
+          return {
+            ...prevState,
+            ebike: data[0].results[0].factor,
+            e85: data[1].results[0].factor,
+            diesel: data[2].results[0].factor,
+            petrol: data[3].results[0].factor,
+            gpl: data[4].results[0].factor,
+            motorcycle: data[5].results[0].factor,
+            escooter: data[6].results[0].factor,
+            ecar: data[7].results[0].factor,
+            hybridcar: data[8].results[0].factor
+          };
+        });
       })
       .catch(error => console.log('Error while fetching:', error))
   }, [])
 
   return (
     <div className="App">
-      <p>Bike factor = 0</p>
-      <p>Electric Bike factor = {ebikeFactor}</p>
-      <p>E85 factor = {carE85Factor}</p>
-      <p>Diesel factor = {carDieselFactor}</p>
-      <p>Petrol factor = {carPetrolFactor}</p>
-      <p>GPL factor = {carGPLFactor}</p>
-      <p>Moto factor = {motorcycleFactor}</p>
-      <p>Electric scooter factor = {escooterFactor}</p>
-      <p>Electric car factor = {carBatteryFactor}</p>
-      <p>Hybrid car factor = {carHybridFactor}</p>
+      <AppContext.Provider value={emissionFactors}>
+        <p>Bike factor = 0</p>
+        <p>Electric Bike factor = {emissionFactors.ebike}</p>
+        <p>E85 factor = {emissionFactors.e85}</p>
+        <p>Diesel factor = {emissionFactors.diesel}</p>
+        <p>Petrol factor = {emissionFactors.petrol}</p>
+        <p>GPL factor = {emissionFactors.gpl}</p>
+        <p>Moto factor = {emissionFactors.motorcycle}</p>
+        <p>Electric scooter factor = {emissionFactors.escooter}</p>
+        <p>Electric car factor = {emissionFactors.ecar}</p>
+        <p>Hybrid car factor = {emissionFactors.hybridcar}</p>
+        <Vehicle />
+      </AppContext.Provider>
     </div>
   );
 }
