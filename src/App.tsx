@@ -1,5 +1,6 @@
 import React, { useEffect, useState, createContext } from "react";
-import Vehicle from "./components/Vehicle";
+import VehicleSelector from "./components/VehicleSelector";
+import Vehicle from "./components/VehicleSelector";
 
 interface IFactors {
   ebike: number,
@@ -27,6 +28,15 @@ function App() {
     ecar: 0,
     hybridcar: 0
   });
+
+  function estimateCO2(vehicle: string, distance: number) {
+    if (vehicle !== "bike") {
+      return (
+        distance * emissionFactors[vehicle as keyof IFactors]
+      );
+    }
+    else return 0
+  }
 
   useEffect(() => {
     Promise.all([
@@ -120,7 +130,7 @@ function App() {
         <p>Electric scooter factor = {emissionFactors.escooter}</p>
         <p>Electric car factor = {emissionFactors.ecar}</p>
         <p>Hybrid car factor = {emissionFactors.hybridcar}</p>
-        <Vehicle />
+        <VehicleSelector estimateCO2={estimateCO2} />
       </AppContext.Provider>
     </div>
   );
