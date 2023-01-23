@@ -1,20 +1,12 @@
-import { useState, useEffect } from "react";
-
 interface Props {
-    estimateCO2: ((vehicle: string, distance:number) => number)
+    setName: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function VehicleSelector(props: Props) {
-    const [vehicle, setVehicle] = useState("");
-    const [emission, setEmission] = useState(0);
+function SelectButton(props: Props) {
 
     function handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
-        setVehicle(e.target.value);
+        props.setName(e.target.value);
     }
-
-    useEffect(() =>{
-        setEmission(props.estimateCO2(vehicle,10));
-    }, [vehicle])
 
     return (
         <div>
@@ -31,9 +23,8 @@ function VehicleSelector(props: Props) {
                 <option value="ecar">Voiture électrique</option>
                 <option value="hybridcar">Voiture hybride</option>
             </select>
-            <p>Emission = {emission}</p>
         </div>
     )
 }
 
-export default VehicleSelector;
+export default SelectButton;

@@ -1,8 +1,8 @@
 import React, { useEffect, useState, createContext } from "react";
-import VehicleSelector from "./components/VehicleSelector";
-import Vehicle from "./components/VehicleSelector";
+import OldVehicle from "./components/OldVehicle";
 
-interface IFactors {
+export interface IFactors {
+  bike: number,
   ebike: number,
   e85: number,
   diesel: number,
@@ -14,10 +14,17 @@ interface IFactors {
   hybridcar: number
 }
 
+export interface IDatas {
+  vehicle: string,
+  emissionFactor: number,
+  distance: number
+}
+
 export const AppContext = createContext({} as IFactors);
 
 function App() {
   const [emissionFactors, setEmissionFactors] = useState<IFactors>({
+    bike: 0,
     ebike: 0,
     e85: 0,
     diesel: 0,
@@ -28,15 +35,9 @@ function App() {
     ecar: 0,
     hybridcar: 0
   });
+  const [OldVehicleData, setOldVehicleData] = useState<IDatas>({vehicle: "bike", emissionFactor: 0, distance:0});
+  const [NewVehicleData, setNewVehicleData] = useState<IDatas>({vehicle: "bike", emissionFactor: 0, distance:0});
 
-  function estimateCO2(vehicle: string, distance: number) {
-    if (vehicle !== "bike") {
-      return (
-        distance * emissionFactors[vehicle as keyof IFactors]
-      );
-    }
-    else return 0
-  }
 
   useEffect(() => {
     Promise.all([
@@ -120,7 +121,7 @@ function App() {
   return (
     <div className="App">
       <AppContext.Provider value={emissionFactors}>
-        <p>Bike factor = 0</p>
+        <p>Bike factor = {emissionFactors.bike}</p>
         <p>Electric Bike factor = {emissionFactors.ebike}</p>
         <p>E85 factor = {emissionFactors.e85}</p>
         <p>Diesel factor = {emissionFactors.diesel}</p>
@@ -130,7 +131,7 @@ function App() {
         <p>Electric scooter factor = {emissionFactors.escooter}</p>
         <p>Electric car factor = {emissionFactors.ecar}</p>
         <p>Hybrid car factor = {emissionFactors.hybridcar}</p>
-        <VehicleSelector estimateCO2={estimateCO2} />
+        <OldVehicle setOldVehicleData={setOldVehicleData} />
       </AppContext.Provider>
     </div>
   );
