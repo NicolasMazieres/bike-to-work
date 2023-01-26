@@ -1,5 +1,6 @@
 import React, { useEffect, useState, createContext } from "react";
 import OldVehicle from "./components/OldVehicle";
+import NewVehicle from "./components/NewVehicle";
 
 export interface IFactors {
   bike: number,
@@ -132,6 +133,7 @@ function App() {
         <p>Electric car factor = {emissionFactors.ecar}</p>
         <p>Hybrid car factor = {emissionFactors.hybridcar}</p>
         <OldVehicle setOldVehicleData={setOldVehicleData} />
+        <NewVehicle setNewVehicleData={setNewVehicleData} />
       </AppContext.Provider>
     </div>
   );

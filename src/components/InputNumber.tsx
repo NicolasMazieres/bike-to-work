@@ -1,17 +1,24 @@
+import { useState, useEffect } from "react";
+
 interface Props {
     setDistance: React.Dispatch<React.SetStateAction<number>>;
 }
 
 function InputNumber(props: Props) {
+    const [value, setValue] = useState("0");
 
     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-        props.setDistance(Number(e.target.value));
+        setValue(e.target.value);
     }
+
+    useEffect(() => {
+        props.setDistance(Number(value));
+    }, [value])
 
     return (
         <div>
             <label htmlFor="distance">Distance aller-retour (en km) : </label>
-            <input type="number" name="distance" id="distance" value="10" onChange={handleChange}/>
+            <input type="number" name="distance" id="distance" value={value} onChange={handleChange}/>
         </div>
     )
 }
