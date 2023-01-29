@@ -1,6 +1,7 @@
 import React, { useEffect, useState, createContext } from "react";
 import OldVehicle from "./components/OldVehicle";
 import NewVehicle from "./components/NewVehicle";
+import EstimateEmissions from "./components/EstimateEmissions";
 
 export interface IFactors {
   bike: number,
@@ -36,8 +37,8 @@ function App() {
     ecar: 0,
     hybridcar: 0
   });
-  const [OldVehicleData, setOldVehicleData] = useState<IDatas>({vehicle: "bike", emissionFactor: 0, distance:0});
-  const [NewVehicleData, setNewVehicleData] = useState<IDatas>({vehicle: "bike", emissionFactor: 0, distance:0});
+  const [oldVehicleData, setOldVehicleData] = useState<IDatas>({vehicle: "bike", emissionFactor: 0, distance:0});
+  const [newVehicleData, setNewVehicleData] = useState<IDatas>({vehicle: "bike", emissionFactor: 0, distance:0});
 
 
   useEffect(() => {
@@ -134,6 +135,7 @@ function App() {
         <p>Hybrid car factor = {emissionFactors.hybridcar}</p>
         <OldVehicle setOldVehicleData={setOldVehicleData} />
         <NewVehicle setNewVehicleData={setNewVehicleData} />
+        <EstimateEmissions oldVehicleData={oldVehicleData} newVehicleData={newVehicleData} />
       </AppContext.Provider>
     </div>
   );
