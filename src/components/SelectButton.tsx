@@ -12,7 +12,7 @@ function SelectButton(props: Props) {
         <div>
             <label htmlFor="vehicle-select">Choisir un véhicule : </label>
             <select name="vehicles" id="vehicle-select" onChange={handleChange}>
-                <option value="bike">Vélo</option>
+                <option value="bike">Vélo / Marche / Télétravail</option>
                 <option value="ebike">Vélo électrique</option>
                 <option value="e85">Voiture (Superéthanol E85)</option>
                 <option value="diesel">Voiture (Diesel)</option>

@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 
 interface Props {
-    setDistance: React.Dispatch<React.SetStateAction<number>>;
+    setNumber: React.Dispatch<React.SetStateAction<number>>;
+    label: string;
+    min?: string;
+    max?: string;
 }
 
-function InputNumber(props: Props) {
+function InputNumber({setNumber, label, min="", max=""}: Props) {
     const [value, setValue] = useState("0");
 
     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -12,13 +15,13 @@ function InputNumber(props: Props) {
     }
 
     useEffect(() => {
-        props.setDistance(Number(value));
-    }, [value])
+        setNumber(Number(value));
+    }, [value, setNumber])
 
     return (
         <div>
-            <label htmlFor="distance">Distance aller-retour (en km) : </label>
-            <input type="number" name="distance" id="distance" value={value} onChange={handleChange}/>
+            <label htmlFor="distance">{label} : </label>
+            <input type="number" name="distance" id="distance" min={min} max={max} value={value} onChange={handleChange} />
         </div>
     )
 }

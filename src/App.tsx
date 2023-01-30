@@ -19,7 +19,8 @@ export interface IFactors {
 export interface IDatas {
   vehicle: string,
   emissionFactor: number,
-  distance: number
+  distance: number,
+  daysPerWeek: number
 }
 
 export const AppContext = createContext({} as IFactors);
@@ -37,8 +38,8 @@ function App() {
     ecar: 0,
     hybridcar: 0
   });
-  const [oldVehicleData, setOldVehicleData] = useState<IDatas>({vehicle: "bike", emissionFactor: 0, distance:0});
-  const [newVehicleData, setNewVehicleData] = useState<IDatas>({vehicle: "bike", emissionFactor: 0, distance:0});
+  const [oldVehicleData, setOldVehicleData] = useState<IDatas>({vehicle: "bike", emissionFactor: 0, distance:0, daysPerWeek:0});
+  const [newVehicleData, setNewVehicleData] = useState<IDatas>({vehicle: "bike", emissionFactor: 0, distance:0, daysPerWeek:0});
 
 
   useEffect(() => {
@@ -123,16 +124,6 @@ function App() {
   return (
     <div className="App">
       <AppContext.Provider value={emissionFactors}>
-        <p>Bike factor = {emissionFactors.bike}</p>
-        <p>Electric Bike factor = {emissionFactors.ebike}</p>
-        <p>E85 factor = {emissionFactors.e85}</p>
-        <p>Diesel factor = {emissionFactors.diesel}</p>
-        <p>Petrol factor = {emissionFactors.petrol}</p>
-        <p>GPL factor = {emissionFactors.gpl}</p>
-        <p>Moto factor = {emissionFactors.motorcycle}</p>
-        <p>Electric scooter factor = {emissionFactors.escooter}</p>
-        <p>Electric car factor = {emissionFactors.ecar}</p>
-        <p>Hybrid car factor = {emissionFactors.hybridcar}</p>
         <OldVehicle setOldVehicleData={setOldVehicleData} />
         <NewVehicle setNewVehicleData={setNewVehicleData} />
         <EstimateEmissions oldVehicleData={oldVehicleData} newVehicleData={newVehicleData} />
