@@ -4,6 +4,7 @@ import { IDatas } from "../App";
 interface Props {
     oldVehicleData: IDatas;
     newVehicleData: IDatas;
+    isBoxChecked: boolean;
 }
 
 function EstimateEmissions(props: Props) {
@@ -22,7 +23,12 @@ function EstimateEmissions(props: Props) {
 
     function estimateEmissions(){
         setOldEmissions(oldDistance*oldEmissionFactor*oldDaysPerWeek*weeksWorkedPerYear);
+        if (props.isBoxChecked && (newDaysPerWeek < oldDaysPerWeek)) {
+            setNewEmissions(newDistance*newEmissionFactor*newDaysPerWeek*weeksWorkedPerYear + oldDistance*oldEmissionFactor*(oldDaysPerWeek-newDaysPerWeek)*weeksWorkedPerYear);
+        }
+        else {
         setNewEmissions(newDistance*newEmissionFactor*newDaysPerWeek*weeksWorkedPerYear);
+        }
     }
 
     return (

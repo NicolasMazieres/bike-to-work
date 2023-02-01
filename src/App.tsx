@@ -40,7 +40,7 @@ function App() {
   });
   const [oldVehicleData, setOldVehicleData] = useState<IDatas>({vehicle: "bike", emissionFactor: 0, distance:0, daysPerWeek:0});
   const [newVehicleData, setNewVehicleData] = useState<IDatas>({vehicle: "bike", emissionFactor: 0, distance:0, daysPerWeek:0});
-
+  const [isBoxChecked, setIsBoxChecked] = useState(false);
 
   useEffect(() => {
     Promise.all([
@@ -125,8 +125,8 @@ function App() {
     <div className="App">
       <AppContext.Provider value={emissionFactors}>
         <OldVehicle setOldVehicleData={setOldVehicleData} />
-        <NewVehicle setNewVehicleData={setNewVehicleData} />
-        <EstimateEmissions oldVehicleData={oldVehicleData} newVehicleData={newVehicleData} />
+        <NewVehicle setNewVehicleData={setNewVehicleData} isBoxChecked={isBoxChecked} setIsBoxChecked={setIsBoxChecked}/>
+        <EstimateEmissions oldVehicleData={oldVehicleData} newVehicleData={newVehicleData} isBoxChecked={isBoxChecked} />
       </AppContext.Provider>
     </div>
   );

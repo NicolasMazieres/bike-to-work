@@ -6,6 +6,8 @@ import InputNumber from "./InputNumber";
 
 interface Props {
     setNewVehicleData: React.Dispatch<React.SetStateAction<IDatas>>;
+    isBoxChecked: boolean;
+    setIsBoxChecked: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function NewVehicle(props: Props) {
@@ -20,6 +22,10 @@ function NewVehicle(props: Props) {
         props.setNewVehicleData({vehicle: name, emissionFactor: selectedEmissionFactor, distance: distance, daysPerWeek: daysPerWeek})
     }, [name,distance, daysPerWeek,props,selectedEmissionFactor])
 
+    function handleChangeBox() {
+        props.setIsBoxChecked(!props.isBoxChecked);
+    }
+
     return (
         <div className="new-vehicle-container">
             <SelectButton setName={setName} />
@@ -29,6 +35,8 @@ function NewVehicle(props: Props) {
             <p>Distance parcourue : {distance} km</p>
             <br />
             <InputNumber setNumber={setDaysPerWeek} label="Nombre de jours par semaine" min="1" max="7" />
+            <label htmlFor="check">Conserver l'ancien véhicule pour les autres jours</label>
+            <input type="checkbox" id="check" checked={props.isBoxChecked} onChange={handleChangeBox} />
         </div>
     )
 }
