@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { IDatas } from "../App";
+import Chart from "./Chart";
 
 interface Props {
     oldVehicleData: IDatas;
@@ -21,22 +22,21 @@ function EstimateEmissions(props: Props) {
     const newEmissionFactor = props.newVehicleData.emissionFactor;
     const newDaysPerWeek = props.newVehicleData.daysPerWeek;
 
-    function estimateEmissions(){
-        setOldEmissions(oldDistance*oldEmissionFactor*oldDaysPerWeek*weeksWorkedPerYear);
+    function estimateEmissions() {
+        setOldEmissions(oldDistance * oldEmissionFactor * oldDaysPerWeek * weeksWorkedPerYear/1000);
         if (props.isBoxChecked && (newDaysPerWeek < oldDaysPerWeek)) {
-            setNewEmissions(newDistance*newEmissionFactor*newDaysPerWeek*weeksWorkedPerYear + oldDistance*oldEmissionFactor*(oldDaysPerWeek-newDaysPerWeek)*weeksWorkedPerYear);
+            setNewEmissions((newDistance * newEmissionFactor * newDaysPerWeek * weeksWorkedPerYear + oldDistance * oldEmissionFactor * (oldDaysPerWeek - newDaysPerWeek) * weeksWorkedPerYear)/1000);
         }
         else {
-        setNewEmissions(newDistance*newEmissionFactor*newDaysPerWeek*weeksWorkedPerYear);
+            setNewEmissions(newDistance * newEmissionFactor * newDaysPerWeek * weeksWorkedPerYear/1000);
         }
     }
 
     return (
         <div>
             <button onClick={estimateEmissions}>Estimer les émissions</button>
-            <p>Les anciennes émissions sont de : {oldEmissions} kgCO2 par an</p>
-            <p>Les nouvelles émissions sont de : {newEmissions} kgCO2 par an</p>
 
+            <Chart oldEmissions={oldEmissions} newEmissions={newEmissions}/>
         </div>
     )
 }
