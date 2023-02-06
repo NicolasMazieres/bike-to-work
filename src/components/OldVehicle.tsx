@@ -16,9 +16,11 @@ function OldVehicle(props: Props) {
     const emissionFactor = useContext(AppContext);
     const selectedEmissionFactor = emissionFactor[name as keyof IFactors]
 
+    const setData = props.setOldVehicleData;
+
     useEffect(() => {
-        props.setOldVehicleData({vehicle: name, emissionFactor: selectedEmissionFactor, distance: distance, daysPerWeek: daysPerWeek})
-    }, [name,distance, daysPerWeek,props,selectedEmissionFactor])
+        setData({vehicle: name, emissionFactor: selectedEmissionFactor, distance: distance, daysPerWeek: daysPerWeek})
+    }, [name,distance, daysPerWeek,selectedEmissionFactor, setData])
 
     return (
         <div className="old-vehicle-container">

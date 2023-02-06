@@ -16,11 +16,13 @@ function NewVehicle(props: Props) {
     const [daysPerWeek, setDaysPerWeek] = useState<number>(0);
 
     const emissionFactor = useContext(AppContext);
-    const selectedEmissionFactor = emissionFactor[name as keyof IFactors]
+    const selectedEmissionFactor = emissionFactor[name as keyof IFactors];
+
+    const setData = props.setNewVehicleData;
 
     useEffect(() => {
-        props.setNewVehicleData({vehicle: name, emissionFactor: selectedEmissionFactor, distance: distance, daysPerWeek: daysPerWeek})
-    }, [name,distance, daysPerWeek,props,selectedEmissionFactor])
+        setData({vehicle: name, emissionFactor: selectedEmissionFactor, distance: distance, daysPerWeek: daysPerWeek})
+    }, [name,distance, daysPerWeek,selectedEmissionFactor, setData])
 
     function handleChangeBox() {
         props.setIsBoxChecked(!props.isBoxChecked);
