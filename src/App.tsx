@@ -19,11 +19,14 @@ export interface IFactors {
 export interface IDatas {
   vehicle: string,
   emissionFactor: number,
+  consommationFactor: number,
   distance: number,
-  daysPerWeek: number
+  daysPerWeek: number,
+  consommation: number,
+  price: number
 }
 
-export const AppContext = createContext({} as IFactors);
+export const AppContext = createContext([{} as IFactors, {} as IFactors, {} as IFactors]);
 
 function App() {
   const [emissionFactors, setEmissionFactors] = useState<IFactors>({
@@ -38,9 +41,34 @@ function App() {
     ecar: 0,
     hybridcar: 0
   });
-  const [oldVehicleData, setOldVehicleData] = useState<IDatas>({vehicle: "bike", emissionFactor: 0, distance:0, daysPerWeek:0});
-  const [newVehicleData, setNewVehicleData] = useState<IDatas>({vehicle: "bike", emissionFactor: 0, distance:0, daysPerWeek:0});
+  const [oldVehicleData, setOldVehicleData] = useState<IDatas>({ vehicle: "bike", emissionFactor: 0, consommationFactor: 0, distance: 0, daysPerWeek: 0, consommation:0, price:0});
+  const [newVehicleData, setNewVehicleData] = useState<IDatas>({ vehicle: "bike", emissionFactor: 0, consommationFactor: 0, distance: 0, daysPerWeek: 0, consommation:0, price:0});
   const [isBoxChecked, setIsBoxChecked] = useState(false);
+
+  const consommationPer100: IFactors = {
+    bike: 0,
+    ebike: 0.72,
+    e85: 8.50,
+    diesel: 5,
+    petrol: 6.80,
+    gpl: 7.50,
+    motorcycle: 5.50,
+    escooter: 6,
+    ecar: 15,
+    hybridcar: 5
+  };
+  const fuelPrices: IFactors  = {
+    bike: 0,
+    ebike: 0.174,
+    e85: 1.1,
+    diesel: 1.85,
+    petrol: 1.85,
+    gpl: 0.9,
+    motorcycle: 1.85,
+    escooter: 0.174,
+    ecar: 0.174,
+    hybridcar: 1.85
+  };
 
   useEffect(() => {
     Promise.all([
@@ -123,9 +151,10 @@ function App() {
 
   return (
     <div className="App">
-      <AppContext.Provider value={emissionFactors}>
+      <h1>Bike to work : faire du vélo pour faire des économies !</h1>
+      <AppContext.Provider value={[emissionFactors,consommationPer100,fuelPrices]}>
         <OldVehicle setOldVehicleData={setOldVehicleData} />
-        <NewVehicle setNewVehicleData={setNewVehicleData} isBoxChecked={isBoxChecked} setIsBoxChecked={setIsBoxChecked}/>
+        <NewVehicle setNewVehicleData={setNewVehicleData} isBoxChecked={isBoxChecked} setIsBoxChecked={setIsBoxChecked} />
         <EstimateEmissions oldVehicleData={oldVehicleData} newVehicleData={newVehicleData} isBoxChecked={isBoxChecked} />
       </AppContext.Provider>
     </div>
