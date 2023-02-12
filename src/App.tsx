@@ -41,9 +41,9 @@ function App() {
     ecar: 0,
     hybridcar: 0
   });
-  const [oldVehicleData, setOldVehicleData] = useState<IDatas>({ vehicle: "bike", emissionFactor: 0, consommationFactor: 0, distance: 0, daysPerWeek: 0, consommation:0, price:0});
-  const [newVehicleData, setNewVehicleData] = useState<IDatas>({ vehicle: "bike", emissionFactor: 0, consommationFactor: 0, distance: 0, daysPerWeek: 0, consommation:0, price:0});
-  const [isBoxChecked, setIsBoxChecked] = useState(false);
+  const [oldVehicleData, setOldVehicleData] = useState<IDatas>({ vehicle: "bike", emissionFactor: 0, consommationFactor: 0, distance: 0, daysPerWeek: 0, consommation: 0, price: 0 });
+  const [newVehicleData, setNewVehicleData] = useState<IDatas>({ vehicle: "bike", emissionFactor: 0, consommationFactor: 0, distance: 0, daysPerWeek: 0, consommation: 0, price: 0 });
+  const [isBoxChecked, setIsBoxChecked] = useState<boolean>(false);
 
   const consommationPer100: IFactors = {
     bike: 0,
@@ -57,7 +57,7 @@ function App() {
     ecar: 15,
     hybridcar: 5
   };
-  const fuelPrices: IFactors  = {
+  const fuelPrices: IFactors = {
     bike: 0,
     ebike: 0.174,
     e85: 1.1,
@@ -152,10 +152,12 @@ function App() {
   return (
     <div className="App">
       <h1>Bike to work : faire du vélo pour faire des économies !</h1>
-      <AppContext.Provider value={[emissionFactors,consommationPer100,fuelPrices]}>
-        <OldVehicle setOldVehicleData={setOldVehicleData} />
-        <NewVehicle setNewVehicleData={setNewVehicleData} isBoxChecked={isBoxChecked} setIsBoxChecked={setIsBoxChecked} />
-        <EstimateEmissions oldVehicleData={oldVehicleData} newVehicleData={newVehicleData} isBoxChecked={isBoxChecked} />
+      <AppContext.Provider value={[emissionFactors, consommationPer100, fuelPrices]}>
+        <div className="body-container">
+          <OldVehicle setOldVehicleData={setOldVehicleData} />
+          <NewVehicle setNewVehicleData={setNewVehicleData} isBoxChecked={isBoxChecked} setIsBoxChecked={setIsBoxChecked} />
+          <EstimateEmissions oldVehicleData={oldVehicleData} newVehicleData={newVehicleData} isBoxChecked={isBoxChecked} />
+        </div>
       </AppContext.Provider>
     </div>
   );

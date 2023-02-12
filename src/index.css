@@ -1,4 +1,52 @@
-.barchart-container {
+/* Layout (containers, etc.) */
+
+.body-container {
+    display: flex;
+}
+
+.new-vehicle-container, .old-vehicle-container {
+    width: 25vw;
+    height: 80vh;
+}
+
+.new-vehicle-body-container, .old-vehicle-body-container {
     width: 100%;
-    height: 100%;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.estimate-container {
+    width: 50vw;
+    height: 80vh;
+}
+
+.estimate-body-container {
+    display: flex;
+    width: 100%;
+    height: 70vh;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.estimate-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chart-container {
+    margin: 0 auto;
+    width: 30vw;
+    height: 40vh;
+}
+
+.chart-responsive-container {
+    margin: auto;
+}
+
+/* General CSS for font, font-size, font alignment, etc. */
+
+h1, h2 {
+    text-align: center;
 }

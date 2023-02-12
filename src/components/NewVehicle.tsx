@@ -30,7 +30,7 @@ function NewVehicle(props: Props) {
     const setData = props.setNewVehicleData;
 
     useEffect(() => {
-        setData({ vehicle: name, emissionFactor: selectedEmissionFactor, consommationFactor: selectedConsommationFactor, distance: distance, daysPerWeek: daysPerWeek, consommation: consommation, price: price})
+        setData({ vehicle: name, emissionFactor: selectedEmissionFactor, consommationFactor: selectedConsommationFactor, distance: distance, daysPerWeek: daysPerWeek, consommation: consommation, price: price })
     }, [name, distance, daysPerWeek, consommation, price, selectedEmissionFactor, selectedConsommationFactor, setData])
 
     function handleChangeBox() {
@@ -40,19 +40,15 @@ function NewVehicle(props: Props) {
     return (
         <div className="new-vehicle-container">
             <h2>Après</h2>
-            <SelectButton setName={setName} selectedName={name} />
-            <p>Ce véhicule émet : {selectedEmissionFactor} kgCO2/km</p>
-            <br />
-            <InputNumber setNumber={setDistance} label="Distance parcourue (en km)" min="0" initvalue="10"/>
-            <br />
-            <InputNumber setNumber={setDaysPerWeek} label="Nombre de jours par semaine" min="1" max="7" initvalue="5"/>
-            <label htmlFor="check">Conserver l'ancien véhicule pour les autres jours</label>
-            <input type="checkbox" id="check" checked={props.isBoxChecked} onChange={handleChangeBox} />
-            <br /><br />
-            <InputNumber setNumber={setConsommation} label="Consommation du véhicule (L/100km ou kWh/100km)" min="0" max="20" initvalue={initConsommationValue} />
-            <br />
-            <InputNumber setNumber={setPrice} label="Prix du carburant (€/L ou €/kWh)" min="0" max="5" initvalue={initFuelValue} />
-            <br /><br /><br /><br />
+            <div className="new-vehicle-body-container">
+                <SelectButton setName={setName} selectedName={name} />
+                <InputNumber setNumber={setDistance} label="Distance parcourue (en km)" min="0" initvalue="10" />
+                <InputNumber setNumber={setDaysPerWeek} label="Nombre de jours par semaine" min="1" max="7" initvalue="5" />
+                <label htmlFor="check">Conserver l'ancien véhicule pour les autres jours</label>
+                <input type="checkbox" id="check" checked={props.isBoxChecked} onChange={handleChangeBox} />
+                <InputNumber setNumber={setConsommation} label="Consommation du véhicule (L/100km ou kWh/100km)" min="0" max="20" initvalue={initConsommationValue} />
+                <InputNumber setNumber={setPrice} label="Prix du carburant (€/L ou €/kWh)" min="0" max="5" initvalue={initFuelValue} />
+            </div>
         </div>
     )
 }

@@ -24,10 +24,10 @@ function Chart(props: Props) {
     ];
 
     return (
-        <div className="barchart-container">
-            <ResponsiveContainer width="50%" aspect={2} >
-                <BarChart data={data} margin={{ top: 20, right: 100, left: 100, bottom: 5, }} barSize={100}>
-                    <XAxis dataKey="name" scale="point" padding={{ left: 100, right: 100 }} />
+        <div className="chart-container">
+            <ResponsiveContainer className="chart-responsive-container" width="90%" height={250} >
+                <BarChart data={data} margin={{ top: 2, right: 10, left: 10, bottom: 2, }} >
+                    <XAxis dataKey="name" scale="point" padding={{ left: 60, right: 60 }} />
                     <YAxis dataKey="value1" unit={props.unit1} yAxisId="left" />
                     <YAxis dataKey="value2" unit={props.unit2} yAxisId="right" orientation="right" />
                     <CartesianGrid strokeDasharray="3 3" />

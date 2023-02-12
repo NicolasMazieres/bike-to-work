@@ -55,17 +55,21 @@ function EstimateEmissions(props: Props) {
     }
 
     return (
-        <div>
-            <button onClick={handleClick}>Faire le comparatif</button>
-
-            <Chart
-                data1={[oldEmissions, newEmissions]}
-                unit1=" t/an"
-                legend1="Emissions annuelles de CO2"
-                data2={[oldCost, newCost]}
-                unit2=" €/an"
-                legend2="Coût annuel en €"
-            />
+        <div className="estimate-container">
+            <h2>Comparatif avant/après</h2>
+            <div className="estimate-body-container">
+                <div className="estimate-button-container">
+                    <button className="estimate-button" onClick={handleClick}>Faire le comparatif</button>
+                </div>
+                <Chart
+                    data1={[oldEmissions, newEmissions]}
+                    unit1=" t/an"
+                    legend1="Emissions annuelles de CO2"
+                    data2={[oldCost, newCost]}
+                    unit2=" €/an"
+                    legend2="Coût annuel en €"
+                />
+            </div>
         </div>
     )
 }
