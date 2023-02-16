@@ -21,6 +21,8 @@
     height: 70vh;
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
+    padding: 0px 20px;
 }
 
 .estimate-container {
@@ -34,12 +36,31 @@
     height: 70vh;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
 }
 
 .estimate-button-container {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.svg-container {
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.svg {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.euro-svg {
+    margin-right: 40px;
 }
 
 .chart-container {
@@ -66,6 +87,9 @@ h2 {
     font-size: 24px;
 }
 
+
+/* Input specific CSS */
+
 input, select {
     padding: 6px;
     border: 1px solid rgb(184, 184, 184);
@@ -86,4 +110,18 @@ input[type=number]::-webkit-outer-spin-button {
 label {
     padding: 18px 12px 12px 0;
     display: inline-block;
+    font-weight: 600;
   }
+
+#checkbox-label {
+    padding: 0 12px 12px 0;
+    font-weight: 400;
+}
+
+.unit {
+    padding: 8px;
+}
+
+.inputnumber-block {
+    display: inline-block;
+}

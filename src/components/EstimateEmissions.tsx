@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { IDatas } from "../App";
 import Chart from "./Chart";
 
@@ -8,12 +8,17 @@ interface Props {
     isBoxChecked: boolean;
 }
 
+interface IResults {
+    moneySaved: number;
+    co2Saved: number;
+}
+
 function EstimateEmissions(props: Props) {
     const [oldEmissions, setOldEmissions] = useState<number>(0);
     const [newEmissions, setNewEmissions] = useState<number>(0);
     const [oldCost, setOldCost] = useState<number>(0);
     const [newCost, setNewCost] = useState<number>(0);
-
+    const [savedResults, setSavedResults] = useState<IResults>({moneySaved: 0, co2Saved: 0});
 
     const weeksWorkedPerYear = 45.6;
 
@@ -28,6 +33,10 @@ function EstimateEmissions(props: Props) {
     const newDaysPerWeek = props.newVehicleData.daysPerWeek;
     const newConsommation = props.newVehicleData.consommation / 100;
     const newPrice = props.newVehicleData.price;
+
+    useEffect(() => {
+        setSavedResults({moneySaved: (oldCost-newCost), co2Saved: (oldEmissions-newEmissions) })
+    }, [oldCost, newCost, oldEmissions, newEmissions])
 
     function estimateEmissions() {
         setOldEmissions(oldDistance * oldEmissionFactor * oldDaysPerWeek * weeksWorkedPerYear / 1000);
@@ -60,6 +69,16 @@ function EstimateEmissions(props: Props) {
             <div className="estimate-body-container">
                 <div className="estimate-button-container">
                     <button className="estimate-button" onClick={handleClick}>Faire le comparatif</button>
+                </div>
+                <div className="svg-container">
+                    <div className="svg">
+                        <img src=".\images\emissions.svg" alt="CO2 emissions" height={80} />
+                        <p>Réduction de {savedResults.co2Saved.toFixed(2)} tCO2/an</p>
+                    </div>
+                    <div className="svg euro-svg">
+                        <img src=".\images\euro.svg" alt="Euro" height={80} />
+                        <p>Gain de {savedResults.moneySaved.toFixed(2)} € par an</p>
+                    </div>
                 </div>
                 <Chart
                     data1={[oldEmissions, newEmissions]}
