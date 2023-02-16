@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Asap:wght@400;600&display=swap');
+
+* {
+    font-family: 'Asap', sans-serif;
+    font-size: 14px;
+}
+
 /* Layout (containers, etc.) */
 
 .body-container {
@@ -50,3 +57,33 @@
 h1, h2 {
     text-align: center;
 }
+
+h1 {
+    font-size: 30px;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+input, select {
+    padding: 6px;
+    border: 1px solid rgb(184, 184, 184);
+    border-radius: 4px;
+  }
+
+input[type=number] {
+    text-align: center;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+label {
+    padding: 18px 12px 12px 0;
+    display: inline-block;
+  }

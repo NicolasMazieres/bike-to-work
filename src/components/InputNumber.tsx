@@ -6,13 +6,20 @@ interface Props {
     min?: string;
     max?: string;
     initvalue?: string;
+    maxLength?: number;
 }
 
-function InputNumber({ setNumber, label, min = "", max = "", initvalue="0"}: Props) {
+function InputNumber({ setNumber, label, min = "", max = "", initvalue="0", maxLength=10}: Props) {
     const [value, setValue] = useState("0");
 
     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-        setValue(e.target.value);
+        if (Number(e.target.value) > Number(max)){
+            setValue(max);
+        }
+        else if (Number(e.target.value) < Number(min)){
+             setValue(min);
+        }
+        else setValue(e.target.value);
     }
 
     useEffect(() => {
@@ -20,8 +27,11 @@ function InputNumber({ setNumber, label, min = "", max = "", initvalue="0"}: Pro
     }, [initvalue])
 
     useEffect(() => {
+        if (value.length > maxLength){
+            setValue(value.slice(0, maxLength));
+        }
         setNumber(Number(value));
-    }, [value, setNumber])
+    }, [value, setNumber, maxLength])
 
     return (
         <div>

@@ -36,10 +36,10 @@ function OldVehicle(props: Props) {
             <h2>Avant</h2>
             <div className="old-vehicle-body-container">
                 <SelectButton setName={setName} selectedName={name} />
-                <InputNumber setNumber={setDistance} label="Distance parcourue (en km)" min="0" initvalue="10" />
+                <InputNumber setNumber={setDistance} label="Distance parcourue (en km)" min="0" max="100" initvalue="10" />
                 <InputNumber setNumber={setDaysPerWeek} label="Nombre de jours par semaine" min="1" max="7" initvalue="5" />
-                <InputNumber setNumber={setConsommation} label="Consommation du véhicule (L/100km ou kWh/100km)" min="0" max="20" initvalue={initConsommationValue} />
-                <InputNumber setNumber={setPrice} label="Prix du carburant (€/L ou €/kWh)" min="0" max="5" initvalue={initFuelValue} />
+                <InputNumber setNumber={setConsommation} label="Consommation du véhicule (L/100km ou kWh/100km)" min="0" max="20" initvalue={initConsommationValue} maxLength={4} />
+                <InputNumber setNumber={setPrice} label="Prix du carburant (€/L ou €/kWh)" min="0" max="100" initvalue={initFuelValue} maxLength={5} />
             </div>
         </div>
     )
