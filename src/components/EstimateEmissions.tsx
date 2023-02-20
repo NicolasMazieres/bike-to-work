@@ -18,7 +18,8 @@ function EstimateEmissions(props: Props) {
     const [newEmissions, setNewEmissions] = useState<number>(0);
     const [oldCost, setOldCost] = useState<number>(0);
     const [newCost, setNewCost] = useState<number>(0);
-    const [savedResults, setSavedResults] = useState<IResults>({moneySaved: 0, co2Saved: 0});
+    const [savedResults, setSavedResults] = useState<IResults>({ moneySaved: 0, co2Saved: 0 });
+    const [showResults, setShowResults] = useState<boolean>(false);
 
     const weeksWorkedPerYear = 45.6;
 
@@ -35,7 +36,7 @@ function EstimateEmissions(props: Props) {
     const newPrice = props.newVehicleData.price;
 
     useEffect(() => {
-        setSavedResults({moneySaved: (oldCost-newCost), co2Saved: (oldEmissions-newEmissions) })
+        setSavedResults({ moneySaved: (oldCost - newCost), co2Saved: (oldEmissions - newEmissions) })
     }, [oldCost, newCost, oldEmissions, newEmissions])
 
     function estimateEmissions() {
@@ -61,12 +62,13 @@ function EstimateEmissions(props: Props) {
     function handleClick() {
         estimateEmissions();
         estimatePrices();
+        setShowResults(true);
     }
 
     return (
         <div className="estimate-container">
             <h2>Comparatif avant/après</h2>
-            <div className="estimate-body-container">
+            {showResults ? (<div className="estimate-body-container">
                 <div className="estimate-button-container">
                     <button className="estimate-button" onClick={handleClick}>Faire le comparatif</button>
                 </div>
@@ -88,7 +90,13 @@ function EstimateEmissions(props: Props) {
                     unit2=" €/an"
                     legend2="Coût annuel en €"
                 />
-            </div>
+            </div>)
+                :
+                (<div className="estimate-body-container">
+                    <div className="estimate-button-container">
+                        <button className="estimate-button" onClick={handleClick}>Faire le comparatif</button>
+                    </div>
+                </div>)}
         </div>
     )
 }

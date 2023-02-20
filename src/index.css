@@ -5,20 +5,36 @@
     font-size: 14px;
 }
 
+body {
+    margin: 0;
+}
+
 /* Layout (containers, etc.) */
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    margin: 0;
+    padding: 0;
+    background-color: brown;
+}
 
 .body-container {
     display: flex;
 }
 
-.new-vehicle-container, .old-vehicle-container {
+.new-vehicle-container,
+.old-vehicle-container {
     width: 25vw;
-    height: 80vh;
+    height: 90vh;
 }
 
-.new-vehicle-body-container, .old-vehicle-body-container {
+.new-vehicle-body-container,
+.old-vehicle-body-container {
     width: 100%;
-    height: 70vh;
+    height: 75vh;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -27,13 +43,13 @@
 
 .estimate-container {
     width: 50vw;
-    height: 80vh;
+    height: 90vh;
 }
 
 .estimate-body-container {
     display: flex;
     width: 100%;
-    height: 70vh;
+    height: 75vh;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
@@ -75,12 +91,14 @@
 
 /* General CSS for font, font-size, font alignment, etc. */
 
-h1, h2 {
+h1,
+h2 {
     text-align: center;
 }
 
 h1 {
     font-size: 30px;
+    margin: 0;
 }
 
 h2 {
@@ -90,18 +108,19 @@ h2 {
 
 /* Input specific CSS */
 
-input, select {
+input,
+select {
     padding: 6px;
     border: 1px solid rgb(184, 184, 184);
     border-radius: 4px;
-  }
+}
 
 input[type=number] {
     text-align: center;
 }
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -111,7 +130,7 @@ label {
     padding: 18px 12px 12px 0;
     display: inline-block;
     font-weight: 600;
-  }
+}
 
 #checkbox-label {
     padding: 0 12px 12px 0;
