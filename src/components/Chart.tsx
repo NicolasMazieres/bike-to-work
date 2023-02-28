@@ -32,11 +32,11 @@ function Chart(props: Props) {
                     <YAxis dataKey="value2" unit={props.unit2} yAxisId="right" orientation="right" />
                     <CartesianGrid strokeDasharray="3 3" />
                     <Legend payload={[
-                        { value: props.legend1, type: "rect", color: "#8884d8" },
-                        { value: props.legend2, type: "rect", color: "#1884d8" }
+                        { value: props.legend1, type: "rect", color: "#24a7a9" },
+                        { value: props.legend2, type: "rect", color: "#a82cbb" }
                     ]} />
-                    <Bar dataKey="value1" yAxisId="left" fill="#8884d8" background={{ fill: '#eee' }} />
-                    <Bar dataKey="value2" yAxisId="right" fill="#1884d8" background={{ fill: '#eee' }} />
+                    <Bar dataKey="value1" yAxisId="left" fill="#24a7a9" background={{ fill: '#eee' }} />
+                    <Bar dataKey="value2" yAxisId="right" fill="#a82cbb" background={{ fill: '#eee' }} />
                 </BarChart>
             </ResponsiveContainer>
         </div>
