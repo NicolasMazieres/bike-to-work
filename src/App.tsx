@@ -152,7 +152,10 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1>Bike to work : faire du vélo pour faire des économies !</h1>
+        <h1>BIKE TO WORK
+          <hr />
+            Des économies pour vous et pour la planète
+        </h1>
       </header>
       <AppContext.Provider value={[emissionFactors, consommationPer100, fuelPrices]}>
         <div className="body-container">
