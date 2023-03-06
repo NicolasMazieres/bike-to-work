@@ -19,8 +19,9 @@ function SelectButton(props: Props) {
                 <option value="diesel" >Voiture (Diesel)</option>
                 <option value="petrol" >Voiture (Essence)</option>
                 <option value="gpl" >Voiture (GPL)</option>
-                <option value="motorcycle" >Moto/Scooter</option>
-                <option value="escooter" >Scooter électrique</option>
+                <option value="motorcyclesmall" >Moto (250cc ou moins)</option>
+                <option value="motorcyclebig" >Moto (plus de 250cc)</option>
+                <option value="escooter" >Trotinette électrique</option>
                 <option value="ecar" >Voiture électrique</option>
                 <option value="hybridcar" >Voiture hybride</option>
             </select>
