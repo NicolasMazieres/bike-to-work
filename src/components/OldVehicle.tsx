@@ -33,7 +33,7 @@ function OldVehicle(props: Props) {
 
     return (
         <div className="old-vehicle-container">
-            <h2>Avant</h2>
+            <h2>Trajet actuel</h2>
             <div className="old-vehicle-body-container">
                 <SelectButton setName={setName} selectedName={name} />
                 <InputNumber setNumber={setDistance} label="Distance parcourue" unit="km/jour" min="0" max="99" initvalue="10" />

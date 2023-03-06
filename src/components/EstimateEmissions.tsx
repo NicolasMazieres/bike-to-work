@@ -67,7 +67,7 @@ function EstimateEmissions(props: Props) {
 
     return (
         <div className="estimate-container">
-            <h2>Comparatif avant/après</h2>
+            <h2>Comparaison des coûts et émissions</h2>
             {showResults ? (<div className="estimate-body-container">
                 <div className="estimate-button-container">
                     <button className="estimate-button" onClick={handleClick}>Faire le comparatif</button>

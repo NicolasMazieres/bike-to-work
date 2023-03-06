@@ -39,7 +39,7 @@ function NewVehicle(props: Props) {
 
     return (
         <div className="new-vehicle-container">
-            <h2>Après</h2>
+            <h2>Trajet futur</h2>
             <div className="new-vehicle-body-container">
                 <SelectButton setName={setName} selectedName={name} />
                 <InputNumber setNumber={setDistance} label="Distance parcourue" unit="km/jour" min="0" max="99" initvalue="10" />
