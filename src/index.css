@@ -143,6 +143,20 @@ h2 {
     font-size: 24px;
 }
 
+strong {
+    color: black;
+    font-size: 15px;
+    border-radius: 5px;
+}
+
+.co2-strong {
+    background: linear-gradient(transparent 0%, #24a7a9 25%, #24a7a9 75%, transparent 100%);
+}
+
+.money-strong {
+    background: linear-gradient(transparent 0%, #a82cbb 25%, #a82cbb 75%, transparent 100%);
+}
+
 /* Input specific CSS */
 
 input,
@@ -210,8 +224,6 @@ label {
 .checkbox-container {
     display: block;
     position: relative;
-    padding-left: 35px;
-    margin-bottom: 12px;
     cursor: pointer;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -239,11 +251,11 @@ label {
 }
 
 .checkbox-container:hover input~.checkmark {
-    background-color: #24a7a9;
+    background-color: #a82cbb;
 }
 
 .checkbox-container input:checked~.checkmark {
-    background-color: #24a7a9;
+    background-color: none;
 }
 
 .checkmark:after {
