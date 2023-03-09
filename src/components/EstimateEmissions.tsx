@@ -65,39 +65,45 @@ function EstimateEmissions(props: Props) {
         setShowResults(true);
     }
 
+    const initialTemplate = (
+        <div className="estimate-body-container">
+            <div className="estimate-button-container initial">
+                <button className="estimate-button" onClick={handleClick}>Faire le comparatif</button>
+            </div >
+        </div >
+    );
+
+    const resultsTemplate = (
+        <div className="estimate-body-container">
+            <div className="estimate-button-container">
+                <button className="estimate-button" onClick={handleClick}>Faire une autre comparaison</button>
+            </div>
+            <div className="svg-container">
+                <div className="svg">
+                    <img src=".\images\emissions.svg" alt="CO2 emissions" height={80} />
+                    <p>{savedResults.co2Saved >= 0 ? ("Moins ") : ("Plus ") } <strong>{Math.abs(savedResults.co2Saved).toFixed(2)} tonnes de CO2 </strong> émises par an</p>
+                </div>
+                <div className="svg euro-svg">
+                    <img src=".\images\euro.svg" alt="Euro" height={80} />
+                    <p>{savedResults.moneySaved >= 0 ? ("Gain de ") : ("Perte de ") } <strong>{Math.abs(savedResults.moneySaved).toFixed(2)} € </strong>par an</p>
+                </div>
+            </div>
+            <Chart
+                data1={[oldEmissions, newEmissions]}
+                unit1=" t/an"
+                legend1="Emissions annuelles de CO2"
+                data2={[oldCost, newCost]}
+                unit2=" €/an"
+                legend2="Coût annuel en €"
+            />
+        </div>
+    );
+
     return (
         <div className="estimate-container">
             <h2>Comparaison des coûts et émissions</h2>
-            {showResults ? (<div className="estimate-body-container">
-                <div className="estimate-button-container">
-                    <button className="estimate-button" onClick={handleClick}>Faire le comparatif</button>
-                </div>
-                <div className="svg-container">
-                    <div className="svg">
-                        <img src=".\images\emissions.svg" alt="CO2 emissions" height={80} />
-                        <p>Réduction de {savedResults.co2Saved.toFixed(2)} tCO2/an</p>
-                    </div>
-                    <div className="svg euro-svg">
-                        <img src=".\images\euro.svg" alt="Euro" height={80} />
-                        <p>Gain de {savedResults.moneySaved.toFixed(2)} € par an</p>
-                    </div>
-                </div>
-                <Chart
-                    data1={[oldEmissions, newEmissions]}
-                    unit1=" t/an"
-                    legend1="Emissions annuelles de CO2"
-                    data2={[oldCost, newCost]}
-                    unit2=" €/an"
-                    legend2="Coût annuel en €"
-                />
-            </div>)
-                :
-                (<div className="estimate-body-container">
-                    <div className="estimate-button-container">
-                        <button className="estimate-button" onClick={handleClick}>Faire le comparatif</button>
-                    </div>
-                </div>)}
-        </div>
+            {showResults ? (resultsTemplate) : (initialTemplate)}
+        </div >
     )
 }
 
