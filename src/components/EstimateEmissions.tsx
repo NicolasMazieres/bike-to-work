@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { IDatas } from "../App";
 import Chart from "./Chart";
+import { FaQuestionCircle } from "react-icons/fa";
 
 interface Props {
     oldVehicleData: IDatas;
@@ -67,6 +68,15 @@ function EstimateEmissions(props: Props) {
 
     const initialTemplate = (
         <div className="estimate-body-container">
+            <div className="question-container">
+                <div className="question-tooltip">
+                    <FaQuestionCircle className="question" />
+                    <div className="left">
+                        <p>Dolor sit amet, consectetur adipiscing elit.</p>
+                        <i></i>
+                    </div>
+                </div>
+            </div>
             <div className="estimate-button-container initial">
                 <button className="estimate-button" onClick={handleClick}>Faire le comparatif</button>
             </div >
@@ -77,15 +87,16 @@ function EstimateEmissions(props: Props) {
         <div className="estimate-body-container">
             <div className="estimate-button-container">
                 <button className="estimate-button" onClick={handleClick}>Faire une autre comparaison</button>
+                <FaQuestionCircle className="question-tooltip" />
             </div>
             <div className="svg-container">
                 <div className="svg">
                     <img src=".\images\emissions.svg" alt="CO2 emissions" height={80} />
-                    <p>{savedResults.co2Saved >= 0 ? ("Moins ") : ("Plus ") } <strong className="co2-strong">{Math.abs(savedResults.co2Saved).toFixed(2)} tonnes de CO2</strong> émises par an</p>
+                    <p>{savedResults.co2Saved >= 0 ? ("Moins ") : ("Plus ")} <strong className="co2-strong">{Math.abs(savedResults.co2Saved).toFixed(2)} tonnes de CO2</strong> émises par an</p>
                 </div>
                 <div className="svg euro-svg">
                     <img src=".\images\euro.svg" alt="Euro" height={80} />
-                    <p>{savedResults.moneySaved >= 0 ? ("Gain de ") : ("Perte de ") } <strong className="money-strong">{Math.abs(savedResults.moneySaved).toFixed(2)} €</strong> par an</p>
+                    <p>{savedResults.moneySaved >= 0 ? ("Gain de ") : ("Perte de ")} <strong className="money-strong">{Math.abs(savedResults.moneySaved).toFixed(2)} €</strong> par an</p>
                 </div>
             </div>
             <Chart
