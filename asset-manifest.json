@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/bike-to-work/static/css/main.707c948d.css",
+    "main.js": "/bike-to-work/static/js/main.08308013.js",
+    "index.html": "/bike-to-work/index.html",
+    "main.707c948d.css.map": "/bike-to-work/static/css/main.707c948d.css.map",
+    "main.08308013.js.map": "/bike-to-work/static/js/main.08308013.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.707c948d.css",
+    "static/js/main.08308013.js"
+  ]
+}
