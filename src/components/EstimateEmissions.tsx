@@ -103,11 +103,11 @@ function EstimateEmissions(props: Props) {
             </div>
             <div className="svg-container">
                 <div className="svg">
-                    <img src=".\images\emissions.svg" alt="CO2 emissions" height={80} className="co2-img" />
+                    <img src="./images/emissions.svg" alt="CO2 emissions" height={80} className="co2-img" />
                     <p>{savedResults.co2Saved >= 0 ? ("Moins ") : ("Plus ")} <strong className="co2-strong">{Math.abs(savedResults.co2Saved).toFixed(2)}&nbsp;tonnes de CO2</strong> émises par an</p>
                 </div>
                 <div className="svg euro-svg">
-                    <img src=".\images\euro.svg" alt="Euro" height={80} className="money-img" />
+                    <img src="./images/euro.svg" alt="Euro" height={80} className="money-img" />
                     <p>{savedResults.moneySaved >= 0 ? ("Gain de ") : ("Perte de ")} <strong className="money-strong">{Math.abs(savedResults.moneySaved).toFixed(2)}&nbsp;€</strong> par an</p>
                 </div>
             </div>
