@@ -81,8 +81,9 @@ header {
 }
 
 .estimate-button-container {
+    width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -167,12 +168,12 @@ strong {
     position: relative;
 }
 
-.question-tooltip .left {
-    min-width:200px; 
-    top:50%;
-    right:100%;
+.question-tooltip .bottom {
+    min-width:400px; 
+    top:100%;
+    left:50%;
     margin-right:20px;
-    transform:translate(0, -50%);
+    transform:translate(-50%, 0%);
     padding:10px 20px;
     background-color:#f2eff4;
     border-radius:8px;
@@ -183,38 +184,42 @@ strong {
     display:none;
 }
 
-.question-tooltip .left p {
+.question-tooltip .bottom p {
     color: #222222;
+    text-align: justify;
 }
 
-.question-tooltip:hover .left {
+.question-tooltip:hover .bottom, .question-tooltip:active .bottom {
     display: block;
 }
 
-.question-tooltip .left i {
+.question-tooltip .bottom i {
     position:absolute;
-    top:50%;
-    left:100%;
-    margin-top:-12px;
-    width:12px;
-    height:24px;
+    bottom:100%;
+    left:50%;
+    margin-left:-12px;
+    width:24px;
+    height:12px;
     overflow:hidden;
 }
 
-.question-tooltip .left i::after {
+.question-tooltip .bottom i::after {
     content:'';
     position:absolute;
     width:12px;
     height:12px;
-    left:0;
-    top:50%;
-    transform:translate(-50%,-50%) rotate(-45deg);
+    left:50%;
+    transform:translate(-50%,50%) rotate(45deg);
     background-color:#f2eff4;
     box-shadow:0 1px 8px rgba(0,0,0,0.5);
 }
 
 .question {
-    font-size: 50px;
+    font-size: 70px;
+}
+
+.results .question-tooltip .question {
+    font-size: 30px;
 }
 
 /* Input specific CSS */

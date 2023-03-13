@@ -66,16 +66,26 @@ function EstimateEmissions(props: Props) {
         setShowResults(true);
     }
 
+    const toolTip = (
+        <div className="question-tooltip">
+            <FaQuestionCircle className="question" />
+            <div className="bottom">
+                <p>
+                    Cet outil permet de comparer différents modes de transport pour son trajet domicile-travail (et idéalement illustrer l'intérêt de remplacer la voiture par le vélo !).
+                    <br /><br />
+                    Les champs sont pré-remplis avec des données jugées cohérentes mais il est possible d'affiner les valeurs si besoin.
+                    <br /><br />
+                    Les données sur les émissions de CO2 sont des données moyennes sur le parc français de véhicules. Elles proviennent de la base de données Base Empreinte® de l'ADEME.
+                </p>
+                <i></i>
+            </div>
+        </div>
+    );
+
     const initialTemplate = (
         <div className="estimate-body-container">
             <div className="question-container">
-                <div className="question-tooltip">
-                    <FaQuestionCircle className="question" />
-                    <div className="left">
-                        <p>Dolor sit amet, consectetur adipiscing elit.</p>
-                        <i></i>
-                    </div>
-                </div>
+                {toolTip}
             </div>
             <div className="estimate-button-container initial">
                 <button className="estimate-button" onClick={handleClick}>Faire le comparatif</button>
@@ -86,8 +96,11 @@ function EstimateEmissions(props: Props) {
     const resultsTemplate = (
         <div className="estimate-body-container">
             <div className="estimate-button-container">
+                <div className="question-container results">
+                    {toolTip}
+                </div>
                 <button className="estimate-button" onClick={handleClick}>Faire une autre comparaison</button>
-                <FaQuestionCircle className="question-tooltip" />
+                <div></div>
             </div>
             <div className="svg-container">
                 <div className="svg">

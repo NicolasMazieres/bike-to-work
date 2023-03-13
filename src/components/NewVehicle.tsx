@@ -44,7 +44,7 @@ function NewVehicle(props: Props) {
                 <SelectButton setName={setName} selectedName={name} />
                 <InputNumber setNumber={setDistance} label="Distance parcourue" unit="km/jour" min="0" max="99" initvalue="10" />
                 <InputNumber setNumber={setDaysPerWeek} label="Nombre de jours par semaine" min="1" max="7" initvalue="5" />
-                <label className="checkbox-container" htmlFor="check" id="checkbox-label">Conserver l'ancien véhicule les autres jours 
+                <label className="checkbox-container" htmlFor="check" id="checkbox-label">Conserver le véhicule du trajet actuel pour les autres jours
                     <input type="checkbox" id="check" checked={props.isBoxChecked} onChange={handleChangeBox} />
                     <span className="checkmark"></span>
                 </label>
